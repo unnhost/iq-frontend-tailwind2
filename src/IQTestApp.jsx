@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 const API_URL = "https://iq-backend-bc3f.onrender.com";
@@ -64,11 +63,16 @@ export default function IQTestApp({ userName }) {
         headers: {
           "Content-Type": "application/json",
         },
-       body: JSON.stringify({ name: userName, answers }),
+        body: JSON.stringify({ name: userName, answers }),  // ✅ include name
       })
         .then((res) => res.json())
-        .then(setResult)
-        .then(() => setSubmitted(true));
+        .then((data) => {
+          setResult(data);
+          setSubmitted(true);
+        })
+        .catch((err) => {
+          console.error("Error submitting answers:", err);
+        });
     }
   }, [current, submitted, answers, questions]);
 
