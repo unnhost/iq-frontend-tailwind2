@@ -25,7 +25,9 @@ export default function IQTestApp({ userName }) {
       const totalCorrect = answers.filter((a) => a.isCorrect).length;
       const iqEstimate = 80 + Math.round((totalCorrect / questions.length) * 40);
 
-      fetch(`${SUPABASE_URL}/rest/v1/results`, {
+      console.log("📡 Sending to Supabase", {
+  name: userName, score: totalCorrect, iq: iqEstimate, totalQuestions });
+    fetch(`${SUPABASE_URL}/rest/v1/results`, {
         method: "POST",
         headers: {
           apikey: SUPABASE_KEY,
@@ -43,7 +45,10 @@ export default function IQTestApp({ userName }) {
           }
         ]),
       })
-        .then(() => console.log("✅ Submitted to Supabase"))
+        .then(async res => {
+        const text = await res.text();
+        console.log("📡 Supabase response:", res.status, text);
+      })
         .catch((err) => console.error("❌ Submit error:", err));
 
       setSent(true);
