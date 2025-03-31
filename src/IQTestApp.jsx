@@ -46,5 +46,5 @@ export default function IQTestApp({ userName }) {
     }
   }, [submitted, sent, answers, questions, userName]);
 
-  return <div className="p-4">Working demo — Supabase is connected</div>;
+  return // Full test will render here (component logic above handles UI & submission)
 }
