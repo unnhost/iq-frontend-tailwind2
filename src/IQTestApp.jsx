@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const API_URL = "https://iq-backend-bc3f.onrender.com";
 
@@ -94,8 +95,10 @@ export default function IQTestApp({ userName }) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
         <h2 className="text-2xl font-bold mb-4">Results</h2>
-        <p className="text-xl mb-4">🧠 <strong>Estimated IQ: {iqEstimate}</strong></p>
-        <p className="mb-6"><strong>Score: {totalCorrect} / {totalQuestions}</strong></p>
+        <p className="text-xl mb-2">🎉 Hey <strong>{userName}</strong>!</p>
+        <p className="text-xl mb-4">
+          Your score is <strong>{totalCorrect} / {totalQuestions}</strong> and your estimated IQ is <strong>{iqEstimate}</strong> 🧠
+        </p>
         <h3 className="text-lg font-semibold mb-2">Answer Summary:</h3>
         <ul className="mb-4">{renderSummary()}</ul>
         <h3 className="text-lg font-semibold mt-4 mb-2">Category Breakdown:</h3>
@@ -121,21 +124,30 @@ export default function IQTestApp({ userName }) {
   const q = questions[current];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
-      <h2 className="text-2xl font-bold mb-4">Question {current + 1}</h2>
-      <p className="mb-4 text-lg">{q.question}</p>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        {q.options.map((opt, i) => (
-          <button
-            key={i}
-            onClick={() => handleAnswer(opt)}
-            className="bg-blue-100 hover:bg-blue-300 text-black font-medium px-4 py-2 rounded-lg transition duration-150"
-          >
-            {opt}
-          </button>
-        ))}
-      </div>
-      <p className="text-sm text-gray-500">Time left: {timeLeft}s</p>
-    </div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={current}
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -40 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-col items-center justify-center min-h-screen bg-white p-6"
+      >
+        <h2 className="text-2xl font-bold mb-4">Question {current + 1}</h2>
+        <p className="mb-4 text-lg">{q.question}</p>
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          {q.options.map((opt, i) => (
+            <button
+              key={i}
+              onClick={() => handleAnswer(opt)}
+              className="bg-blue-100 hover:bg-blue-300 text-black font-medium px-4 py-2 rounded-lg transition duration-150"
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+        <p className="text-sm text-gray-500">Time left: {timeLeft}s</p>
+      </motion.div>
+    </AnimatePresence>
   );
 }
