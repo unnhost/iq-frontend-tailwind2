@@ -30,7 +30,20 @@ export default function IQTestApp({ userName }) {
       return;
     }
     const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(timer);
+    
+  const totalCorrect = answers.filter((a) => a.isCorrect).length;
+  const totalQuestions = questions.length;
+  const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40); // crude estimate
+
+  const renderSummary = () =>
+    answers.map((a, i) => (
+      <li key={i}>
+        Q{i + 1}: {a.question} | Your Answer: {a.selected} | Correct: {a.correctAnswer} |{" "}
+        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: {a.time}s
+      </li>
+    ));
+
+  return () => clearTimeout(timer);
   }, [timeLeft, current, submitted, questions]);
 
   
@@ -84,10 +97,23 @@ const handleAnswer = (selected) => {
   if (questions.length === 0) return <p className="p-6 text-center text-lg">Loading...</p>;
 
   if (submitted && questions.length > 0) {
-    return (
+    
+  const totalCorrect = answers.filter((a) => a.isCorrect).length;
+  const totalQuestions = questions.length;
+  const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40); // crude estimate
+
+  const renderSummary = () =>
+    answers.map((a, i) => (
+      <li key={i}>
+        Q{i + 1}: {a.question} | Your Answer: {a.selected} | Correct: {a.correctAnswer} |{" "}
+        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: {a.time}s
+      </li>
+    ));
+
+  return (
       <div className="max-w-3xl mx-auto p-6 text-center">
         <h1 className="text-3xl font-bold mb-4">Your Real IQ Score</h1>
-        <p className="text-xl mb-4">🧠 Estimated IQ: <strong>{result?.estimated_iq}</strong></p>
+        <p className="text-xl mb-4">🧠 Estimated IQ: <strong>{iqEstimate}</strong> {iqEstimate} <strong>{result?.estimated_iq}</strong></p>
         <p className="mb-6">Score: {result?.score} / {result?.max_score}</p>
         
         <h2 className="text-xl font-semibold mb-2">🧩 Category Performance:</h2>
@@ -126,6 +152,19 @@ const handleAnswer = (selected) => {
   }
 
   const q = questions[current];
+
+  
+  const totalCorrect = answers.filter((a) => a.isCorrect).length;
+  const totalQuestions = questions.length;
+  const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40); // crude estimate
+
+  const renderSummary = () =>
+    answers.map((a, i) => (
+      <li key={i}>
+        Q{i + 1}: {a.question} | Your Answer: {a.selected} | Correct: {a.correctAnswer} |{" "}
+        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: {a.time}s
+      </li>
+    ));
 
   return (
     <div className="max-w-xl mx-auto p-6 text-center">
