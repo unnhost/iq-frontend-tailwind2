@@ -10,6 +10,43 @@ export default function IQTestApp({ userName }) {
   const [answers, setAnswers] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
+  const [sent, setSent] = useState(false); // track if result already sent
+
+  useEffect(() => {
+    fetch(`${API_URL}/questions`)
+      .then((res) => res.json())
+      .then(setQuestions)
+      .catch((err) => console.error("Error loading questions:", err));
+  }, []);
+
+  useEffect(() => {
+    if (submitted && !sent) {
+      const totalCorrect = answers.filter((a) => a.isCorrect).length;
+      const iqEstimate = 80 + Math.round((totalCorrect / questions.length) * 40);
+      fetch(`${API_URL}/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: userName,
+          score: totalCorrect,
+          max_score: questions.length,
+          iq: iqEstimate,
+          results: answers,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log("Submitted result:", data))
+        .catch((err) => console.error("Submit error:", err));
+
+      setSent(true);
+    }
+  }, [submitted, sent, answers, questions, userName]);
+
+  const [questions, setQuestions] = useState([]);
+  const [current, setCurrent] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   useEffect(() => {
     fetch(`${API_URL}/questions`)
