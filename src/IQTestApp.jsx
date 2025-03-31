@@ -102,7 +102,6 @@ const handleAnswer = (selected) => {
   const totalQuestions = questions.length;
   const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40); // crude estimate
 
-  const renderSummary = () =>
     answers.map((a, i) => (
       <li key={i}>
         Q{i + 1}: {a.question} | Your Answer: <strong>{a.selected}</strong> | Correct Answer: <strong>{a.correctAnswer}</strong> |{" "}
@@ -131,7 +130,7 @@ const handleAnswer = (selected) => {
         </ul>
 
         <h3 className="text-lg font-medium mb-2">📜 Answer Summary:
-<ul>{renderSummary()}</ul></h3>
+<ul>{renderSummary()}</ul>
         <ul className="mb-6 text-left list-disc list-inside">
           {log.map((entry, i) => (
             <li key={i}>
@@ -159,7 +158,6 @@ const handleAnswer = (selected) => {
   const totalQuestions = questions.length;
   const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40); // crude estimate
 
-  const renderSummary = () =>
     answers.map((a, i) => (
       <li key={i}>
         Q{i + 1}: {a.question} | Your Answer: <strong>{a.selected}</strong> | Correct Answer: <strong>{a.correctAnswer}</strong> |{" "}
