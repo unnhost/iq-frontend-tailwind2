@@ -33,34 +33,33 @@ export default function IQTestApp({ userName }) {
     return () => clearTimeout(timer);
   }, [timeLeft, current, submitted, questions]);
 
-  const handleAnswer = (selected) => {
-    const q = questions[current];
-    const timeTaken = 30 - timeLeft;
+  
+const handleAnswer = (selected) => {
+  const q = questions[current];
+  const correctAnswer = String(q.answer).trim().toLowerCase();
+  const userAnswer = String(selected).trim().toLowerCase();
+  const isCorrect = userAnswer === correctAnswer;
 
-    setAnswers((prev) => [
-      ...prev,
-      {
-        question_id: q.id,
-        selected: selected,
-        time_taken: timeTaken,
-      },
-    ]);
-
-    setLog((prev) => [
-      ...prev,
-      {
-        question: q.question,
-        selected: selected,
-        correct: q.answer,
-        timeTaken: timeTaken,
-        status:
-          selected === q.answer && timeTaken <= 30 ? "✅ Correct" : "❌ Incorrect",
-      },
-    ]);
-
-    setTimeLeft(30);
-    setCurrent((c) => c + 1);
+  const newAnswer = {
+    question: q.question,
+    correctAnswer: q.answer,
+    selected: selected,
+    isCorrect,
+    time: 30 - timeLeft,
   };
+
+  setAnswers((prev) => [...prev, newAnswer]);
+  setLog((prev) => [...prev, newAnswer]);
+
+  const next = current + 1;
+  if (next < questions.length) {
+    setCurrent(next);
+    setTimeLeft(30);
+  } else {
+    setSubmitted(true);
+  }
+};
+
 
   useEffect(() => {
     if (questions.length > 0 && current === questions.length && !submitted) {
