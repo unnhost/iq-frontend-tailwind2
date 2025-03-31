@@ -13,8 +13,14 @@ export default function IQTestApp({ userName }) {
 
   useEffect(() => {
     fetch(`${API_URL}/questions`)
-      .then((res) => res.json())
-      .then(setQuestions);
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load questions");
+        return res.json();
+      })
+      .then(setQuestions)
+      .catch((err) => {
+        console.error("Error loading questions:", err);
+      });
   }, []);
 
   useEffect(() => {
