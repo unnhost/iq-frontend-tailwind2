@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react";
 
 const API_URL = "https://iq-backend-bc3f.onrender.com";
-const USER_TOKEN = "user-token";
 
-export default function IQTestApp() {
+export default function IQTestApp({ userName }) {
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -64,9 +63,8 @@ export default function IQTestApp() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-token": USER_TOKEN,
         },
-        body: JSON.stringify({ answers }),
+        body: JSON.stringify({ name: userName, answers }),
       })
         .then((res) => res.json())
         .then(setResult)
@@ -74,66 +72,62 @@ export default function IQTestApp() {
     }
   }, [current, submitted, answers, questions]);
 
-  if (questions.length === 0) return <p className="p-10 text-center text-lg">Loading...</p>;
+  if (questions.length === 0) return <p style={{ padding: 20 }}>Loading...</p>;
 
   if (submitted && questions.length > 0) {
     return (
-      <div className="max-w-3xl mx-auto p-8">
-        <h1 className="text-3xl font-bold mb-4">Your Real IQ Score</h1>
-        <p className="text-xl mb-2">🧠 Estimated IQ: <strong>{result?.estimated_iq}</strong></p>
-        <p className="mb-4">Score: {result?.score} / {result?.max_score}</p>
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-2">🧩 Category Performance:</h2>
-          <ul className="list-disc list-inside">
-            {result?.category_scores && Object.entries(result.category_scores).map(([cat, score]) => (
-              <li key={cat}><strong>{cat}</strong>: {score} pts</li>
-            ))}
-          </ul>
-        </div>
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-2">💬 Feedback:</h2>
-          <ul className="list-disc list-inside">
-            {result?.feedback && result.feedback.map((f, i) => (
-              <li key={i}>{f}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-2">📜 Answer Summary:</h3>
-          <ul className="list-decimal list-inside text-sm">
-            {log.map((entry, i) => (
-              <li key={i}>
-                Q{i + 1}: {entry.selected || "(No answer)"} | Correct: {entry.correct} | Time: {entry.timeTaken}s | {entry.status}
-              </li>
-            ))}
-          </ul>
+      <div style={{ padding: 20 }}>
+        <h1>Your Real IQ Score</h1>
+        <p style={{ fontSize: "1.5em" }}>🧠 Estimated IQ: <strong>{result?.estimated_iq}</strong></p>
+        <p>Score: {result?.score} / {result?.max_score}</p>
+        <h2>🧩 Category Performance:</h2>
+        <ul>
+          {result?.category_scores && Object.entries(result.category_scores).map(([cat, score]) => (
+            <li key={cat}>
+              <strong>{cat}</strong>: {score} pts
+            </li>
+          ))}
+        </ul>
+        <h2>💬 Feedback:</h2>
+        <ul>
+          {result?.feedback && result.feedback.map((f, i) => (
+            <li key={i}>• {f}</li>
+          ))}
+        </ul>
+        <h3>📜 Answer Summary:</h3>
+        <ul>
+          {log.map((entry, i) => (
+            <li key={i}>
+              Q{i + 1}: {entry.selected || "(No answer)"} | Correct: {entry.correct} | Time: {entry.timeTaken}s | {entry.status}
+            </li>
+          ))}
+        </ul>
+        <div style={{ marginTop: 20 }}>
+          <button onClick={() => window.location.reload()} className="bg-gray-800 text-white px-6 py-2 rounded mr-4">Retake Test</button>
+          <button onClick={() => window.location.href = "/"} className="bg-blue-600 text-white px-6 py-2 rounded">Go to Home</button>
         </div>
       </div>
     );
   }
 
   if (current >= questions.length || questions.length === 0) {
-    return <p className="p-10 text-center text-lg">Submitting your answers...</p>;
+    return <p style={{ padding: 20 }}>Submitting your answers...</p>;
   }
 
   const q = questions[current];
 
   return (
-    <div className="max-w-3xl mx-auto p-8">
-      <h2 className="text-xl font-bold mb-2">Question {current + 1} / {questions.length}</h2>
-      <p className="mb-4">{q.question}</p>
-      <div className="space-y-2 mb-4">
+    <div style={{ padding: 20 }}>
+      <h2>Question {current + 1} / {questions.length}</h2>
+      <p>{q.question}</p>
+      <div>
         {Object.entries(q.options).map(([key, val]) => (
-          <button
-            key={key}
-            onClick={() => handleAnswer(key)}
-            className="block w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded shadow"
-          >
+          <button key={key} onClick={() => handleAnswer(key)} style={{ margin: '5px' }}>
             {key}: {val}
           </button>
         ))}
       </div>
-      <p className="text-sm text-gray-600">⏱ Time left: {timeLeft}s</p>
+      <p>Time left: {timeLeft}s</p>
     </div>
   );
 }
