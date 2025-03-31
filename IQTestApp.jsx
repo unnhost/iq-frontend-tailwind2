@@ -102,7 +102,7 @@ export default function IQTestApp({ userName }) {
           <button
             key={i}
             onClick={() => handleAnswer(opt)}
-            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
+            className="bg-blue-100 hover:bg-blue-300 text-black font-medium px-4 py-2 rounded-lg transition duration-150"
           >
             {opt}
           </button>
