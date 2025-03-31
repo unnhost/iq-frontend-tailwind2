@@ -38,8 +38,8 @@ export default function IQTestApp({ userName }) {
   const renderSummary = () =>
     answers.map((a, i) => (
       <li key={i}>
-        Q{i + 1}: {a.question} | Your Answer: {a.selected} | Correct: {a.correctAnswer} |{" "}
-        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: {a.time}s
+        Q{i + 1}: {a.question} | Your Answer: <strong>{a.selected}</strong> | Correct Answer: <strong>{a.correctAnswer}</strong> |{" "}
+        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: <strong>{a.time}s</strong>
       </li>
     ));
 
@@ -105,16 +105,16 @@ const handleAnswer = (selected) => {
   const renderSummary = () =>
     answers.map((a, i) => (
       <li key={i}>
-        Q{i + 1}: {a.question} | Your Answer: {a.selected} | Correct: {a.correctAnswer} |{" "}
-        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: {a.time}s
+        Q{i + 1}: {a.question} | Your Answer: <strong>{a.selected}</strong> | Correct Answer: <strong>{a.correctAnswer}</strong> |{" "}
+        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: <strong>{a.time}s</strong>
       </li>
     ));
 
   return (
       <div className="max-w-3xl mx-auto p-6 text-center">
         <h1 className="text-3xl font-bold mb-4">Your Real IQ Score</h1>
-        <p className="text-xl mb-4">🧠 Estimated IQ: <strong>{iqEstimate}</strong> {iqEstimate} <strong>{result?.estimated_iq}</strong></p>
-        <p className="mb-6">Score: <strong>{totalCorrect} / {totalQuestions}</strong> {result?.score} / {result?.max_score}</p>
+        <p className="text-xl mb-4">🧠 <strong>Estimated IQ: {iqEstimate}</strong> {iqEstimate} <strong>{result?.estimated_iq}</strong></p>
+        <p className="mb-6"><strong>Score: {totalCorrect} / {totalQuestions}</strong> {result?.score} / {result?.max_score}</p>
         
         <h2 className="text-xl font-semibold mb-2">🧩 Category Performance:</h2>
         <ul className="mb-6 text-left list-disc list-inside">
@@ -130,7 +130,8 @@ const handleAnswer = (selected) => {
           ))}
         </ul>
 
-        <h3 className="text-lg font-medium mb-2">📜 Answer Summary:</h3>
+        <h3 className="text-lg font-medium mb-2">📜 Answer Summary:
+<ul>{renderSummary()}</ul></h3>
         <ul className="mb-6 text-left list-disc list-inside">
           {log.map((entry, i) => (
             <li key={i}>
@@ -161,8 +162,8 @@ const handleAnswer = (selected) => {
   const renderSummary = () =>
     answers.map((a, i) => (
       <li key={i}>
-        Q{i + 1}: {a.question} | Your Answer: {a.selected} | Correct: {a.correctAnswer} |{" "}
-        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: {a.time}s
+        Q{i + 1}: {a.question} | Your Answer: <strong>{a.selected}</strong> | Correct Answer: <strong>{a.correctAnswer}</strong> |{" "}
+        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: <strong>{a.time}s</strong>
       </li>
     ));
 
