@@ -64,7 +64,7 @@ export default function IQTestApp({ userName }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: userName, answers }),
+       body: JSON.stringify({ name: userName, answers }),
       })
         .then((res) => res.json())
         .then(setResult)
