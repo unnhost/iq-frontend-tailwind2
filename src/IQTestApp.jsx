@@ -13,7 +13,19 @@ export default function IQTestApp({ userName }) {
   const [timeLeft, setTimeLeft] = useState(30);
   const [sent, setSent] = useState(false);
 
-  useEffect(() => {
+  
+useEffect(() => {
+  if (!submitted && timeLeft > 0) {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  } else if (timeLeft === 0 && !submitted) {
+    handleAnswer("⏰ Timeout");
+  }
+}, [timeLeft, submitted]);
+
+useEffect(() => {
     fetch("https://iq-backend-bc3f.onrender.com/questions")
       .then((res) => res.json())
       .then(setQuestions)
@@ -25,9 +37,7 @@ export default function IQTestApp({ userName }) {
       const totalCorrect = answers.filter((a) => a.isCorrect).length;
       const iqEstimate = 80 + Math.round((totalCorrect / questions.length) * 40);
 
-      console.log("📡 Sending to Supabase", {
-  name: userName, score: totalCorrect, iq: iqEstimate, totalQuestions });
-    fetch(`${SUPABASE_URL}/rest/v1/results`, {
+      fetch(`${SUPABASE_URL}/rest/v1/results`, {
         method: "POST",
         headers: {
           apikey: SUPABASE_KEY,
@@ -45,10 +55,7 @@ export default function IQTestApp({ userName }) {
           }
         ]),
       })
-        .then(async res => {
-        const text = await res.text();
-        console.log("📡 Supabase response:", res.status, text);
-      })
+        .then(() => console.log("✅ Submitted to Supabase"))
         .catch((err) => console.error("❌ Submit error:", err));
 
       setSent(true);
