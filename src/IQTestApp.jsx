@@ -3,12 +3,14 @@ import questionsData from "./questions.json";
 import Leaderboard from "./Leaderboard";
 
 const IQTestApp = () => {
-  const [step, setStep] = useState("intro"); // intro, quiz, result
+  const [step, setStep] = useState("intro");
   const [name, setName] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [categoryScores, setCategoryScores] = useState({});
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   const question = questionsData[currentIndex];
 
@@ -19,13 +21,29 @@ const IQTestApp = () => {
 
   const handleAnswer = (answer) => {
     const isCorrect = answer === question.correct_answer;
-    if (isCorrect) setScore(score + 1);
 
-    const newAnswers = [...selectedAnswers, { question: question.question, selected: answer }];
-    setSelectedAnswers(newAnswers);
+    if (isCorrect) {
+      setScore(prev => prev + 1);
+      setCategoryScores(prev => ({
+        ...prev,
+        [question.category]: (prev[question.category] || 0) + 1
+      }));
+    }
+
+    setSelectedAnswers(prev => [
+      ...prev,
+      {
+        question: question.question,
+        selected: answer,
+        correct: question.correct_answer,
+        category: question.category,
+        explanation: question.explanation
+      }
+    ]);
 
     if (currentIndex + 1 < questionsData.length) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex(prev => prev + 1);
+      setTimeLeft(30);
     } else {
       setStep("result");
     }
@@ -37,11 +55,30 @@ const IQTestApp = () => {
     setCurrentIndex(0);
     setScore(0);
     setSelectedAnswers([]);
+    setCategoryScores({});
     setShowLeaderboard(false);
+    setTimeLeft(30);
   };
 
+  useEffect(() => {
+    if (step !== "quiz") return;
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleAnswer("No Answer");
+          return 30;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [step, currentIndex]);
+
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10 text-center">
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10 text-center">
       {step === "intro" && (
         <>
           <h1 className="text-2xl font-bold mb-4">Welcome to the IQ Test</h1>
@@ -76,8 +113,9 @@ const IQTestApp = () => {
 
       {step === "quiz" && (
         <>
-          <h2 className="text-xl font-semibold mb-4">Question {currentIndex + 1}</h2>
-          <p className="mb-6">{question.question}</p>
+          <h2 className="text-xl font-semibold mb-2">Question {currentIndex + 1}</h2>
+          <p className="mb-4">{question.question}</p>
+          <p className="text-red-500 mb-6">Time left: {timeLeft} seconds</p>
           <div className="grid grid-cols-2 gap-4">
             {question.answers.map((ans, idx) => (
               <button
@@ -95,21 +133,44 @@ const IQTestApp = () => {
       {step === "result" && (
         <>
           <h2 className="text-2xl font-bold mb-4">Your Score: {score}/{questionsData.length}</h2>
-          <p className="mb-4">Thank you for completing the test, {name}!</p>
-          <button
-            onClick={handleRetake}
-            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
-          >
-            Retake Test
-          </button>
-          <div className="mt-4">
+          <p className="mb-2">Thank you, {name}!</p>
+
+          <div className="text-left mt-6">
+            <h3 className="text-xl font-semibold mb-2">Breakdown by Category:</h3>
+            <ul className="mb-6">
+              {Object.entries(categoryScores).map(([cat, val]) => (
+                <li key={cat}>{cat}: {val}</li>
+              ))}
+            </ul>
+
+            <h3 className="text-xl font-semibold mb-2">Review Answers:</h3>
+            <ul className="space-y-4">
+              {selectedAnswers.map((item, idx) => (
+                <li key={idx} className="p-4 bg-gray-100 rounded">
+                  <strong>Q{idx + 1}:</strong> {item.question}<br/>
+                  <span className="text-green-700">Correct Answer:</span> {item.correct}<br/>
+                  <span className="text-blue-700">Your Answer:</span> {item.selected}<br/>
+                  <span className="text-gray-700 italic">Explanation:</span> {item.explanation}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-6">
+            <button
+              onClick={handleRetake}
+              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+            >
+              Retake Test
+            </button>
             <button
               onClick={() => setShowLeaderboard(true)}
-              className="text-blue-500 underline"
+              className="text-blue-500 underline ml-4"
             >
               View Leaderboard
             </button>
           </div>
+
           {showLeaderboard && (
             <div className="mt-6">
               <Leaderboard />
