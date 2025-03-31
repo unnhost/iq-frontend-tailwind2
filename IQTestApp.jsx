@@ -44,6 +44,7 @@ export default function IQTestApp({ userName }) {
       selected: selected,
       isCorrect,
       time: 30 - timeLeft,
+      category: q.category,
     };
 
     setAnswers((prev) => [...prev, newAnswer]);
@@ -60,6 +61,22 @@ export default function IQTestApp({ userName }) {
   const totalCorrect = answers.filter((a) => a.isCorrect).length;
   const totalQuestions = questions.length;
   const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40);
+
+  const summaryByCategory = () => {
+    const stats = {};
+    for (const ans of answers) {
+      if (!stats[ans.category]) stats[ans.category] = { correct: 0, total: 0 };
+      stats[ans.category].total += 1;
+      if (ans.isCorrect) stats[ans.category].correct += 1;
+    }
+
+    return Object.entries(stats).map(([cat, stat]) => (
+      <li key={cat}>
+        <strong>{cat}</strong>: {stat.correct} / {stat.total}{" "}
+        {stat.correct / stat.total < 0.5 ? "❌ Needs improvement" : "✅"}
+      </li>
+    ));
+  };
 
   const renderSummary = () =>
     answers.map((a, i) => (
@@ -80,13 +97,23 @@ export default function IQTestApp({ userName }) {
         <p className="text-xl mb-4">🧠 <strong>Estimated IQ: {iqEstimate}</strong></p>
         <p className="mb-6"><strong>Score: {totalCorrect} / {totalQuestions}</strong></p>
         <h3 className="text-lg font-semibold mb-2">Answer Summary:</h3>
-        <ul>{renderSummary()}</ul>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Retake Test
-        </button>
+        <ul className="mb-4">{renderSummary()}</ul>
+        <h3 className="text-lg font-semibold mt-4 mb-2">Category Breakdown:</h3>
+        <ul className="mb-6">{summaryByCategory()}</ul>
+        <div className="flex gap-4">
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Retake Test
+          </button>
+          <button
+            onClick={() => (window.location.href = "/")}
+            className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+          >
+            🏠 Home
+          </button>
+        </div>
       </div>
     );
   }
