@@ -42,10 +42,6 @@ export default function IQTestApp({ userName }) {
     }
   }, [submitted, sent, answers, questions, userName]);
 
-  const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(30);
 
   useEffect(() => {
     fetch(`${API_URL}/questions`)
