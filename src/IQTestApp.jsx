@@ -72,62 +72,68 @@ export default function IQTestApp({ userName }) {
     }
   }, [current, submitted, answers, questions]);
 
-  if (questions.length === 0) return <p style={{ padding: 20 }}>Loading...</p>;
+  if (questions.length === 0) return <p className="p-6 text-center text-lg">Loading...</p>;
 
   if (submitted && questions.length > 0) {
     return (
-      <div style={{ padding: 20 }}>
-        <h1>Your Real IQ Score</h1>
-        <p style={{ fontSize: "1.5em" }}>🧠 Estimated IQ: <strong>{result?.estimated_iq}</strong></p>
-        <p>Score: {result?.score} / {result?.max_score}</p>
-        <h2>🧩 Category Performance:</h2>
-        <ul>
+      <div className="max-w-3xl mx-auto p-6 text-center">
+        <h1 className="text-3xl font-bold mb-4">Your Real IQ Score</h1>
+        <p className="text-xl mb-4">🧠 Estimated IQ: <strong>{result?.estimated_iq}</strong></p>
+        <p className="mb-6">Score: {result?.score} / {result?.max_score}</p>
+        
+        <h2 className="text-xl font-semibold mb-2">🧩 Category Performance:</h2>
+        <ul className="mb-6 text-left list-disc list-inside">
           {result?.category_scores && Object.entries(result.category_scores).map(([cat, score]) => (
-            <li key={cat}>
-              <strong>{cat}</strong>: {score} pts
-            </li>
+            <li key={cat}><strong>{cat}</strong>: {score} pts</li>
           ))}
         </ul>
-        <h2>💬 Feedback:</h2>
-        <ul>
+
+        <h2 className="text-xl font-semibold mb-2">💬 Feedback:</h2>
+        <ul className="mb-6 text-left list-disc list-inside">
           {result?.feedback && result.feedback.map((f, i) => (
             <li key={i}>• {f}</li>
           ))}
         </ul>
-        <h3>📜 Answer Summary:</h3>
-        <ul>
+
+        <h3 className="text-lg font-medium mb-2">📜 Answer Summary:</h3>
+        <ul className="mb-6 text-left list-disc list-inside">
           {log.map((entry, i) => (
             <li key={i}>
               Q{i + 1}: {entry.selected || "(No answer)"} | Correct: {entry.correct} | Time: {entry.timeTaken}s | {entry.status}
             </li>
           ))}
         </ul>
-        <div style={{ marginTop: 20 }}>
-          <button onClick={() => window.location.reload()} className="bg-gray-800 text-white px-6 py-2 rounded mr-4">Retake Test</button>
-          <button onClick={() => window.location.href = "/"} className="bg-blue-600 text-white px-6 py-2 rounded">Go to Home</button>
+
+        <div className="flex justify-center space-x-4">
+          <button onClick={() => window.location.reload()} className="bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-700">Retake Test</button>
+          <button onClick={() => window.location.href = "/"} className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-500">Go to Home</button>
         </div>
       </div>
     );
   }
 
   if (current >= questions.length || questions.length === 0) {
-    return <p style={{ padding: 20 }}>Submitting your answers...</p>;
+    return <p className="p-6 text-center text-lg">Submitting your answers...</p>;
   }
 
   const q = questions[current];
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Question {current + 1} / {questions.length}</h2>
-      <p>{q.question}</p>
-      <div>
+    <div className="max-w-xl mx-auto p-6 text-center">
+      <h2 className="text-2xl font-bold mb-4">Question {current + 1} / {questions.length}</h2>
+      <p className="mb-6 text-lg">{q.question}</p>
+      <div className="grid grid-cols-2 gap-4 mb-6">
         {Object.entries(q.options).map(([key, val]) => (
-          <button key={key} onClick={() => handleAnswer(key)} style={{ margin: '5px' }}>
+          <button
+            key={key}
+            onClick={() => handleAnswer(key)}
+            className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500"
+          >
             {key}: {val}
           </button>
         ))}
       </div>
-      <p>Time left: {timeLeft}s</p>
+      <p className="text-sm text-gray-600">Time left: {timeLeft}s</p>
     </div>
   );
 }
