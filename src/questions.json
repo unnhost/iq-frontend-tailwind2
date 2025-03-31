@@ -1,602 +1,602 @@
 [
   {
-    "question": "Sample Logic Question 1",
+    "question": "If all cats are mammals, and some mammals are dogs, which of the following is true?",
     "answers": [
-      "Wrong 1C",
-      "Wrong 1B",
-      "Wrong 1A",
-      "Correct 1"
+      "All cats are dogs",
+      "Some dogs are cats",
+      "All mammals are cats",
+      "Some mammals could be dogs"
     ],
-    "correct_answer": "Correct 1",
+    "correct_answer": "Some mammals could be dogs",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 1' is correct in a Logic question."
+    "explanation": "Only the last statement is logically valid based on the premises."
   },
   {
-    "question": "Sample Logic Question 2",
+    "question": "Tom is taller than Jerry. Jerry is taller than Mike. Who is the shortest?",
     "answers": [
-      "Wrong 2B",
-      "Wrong 2C",
-      "Wrong 2A",
-      "Correct 2"
+      "Tom",
+      "Jerry",
+      "Mike",
+      "Can't determine"
     ],
-    "correct_answer": "Correct 2",
+    "correct_answer": "Mike",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 2' is correct in a Logic question."
+    "explanation": "If Tom > Jerry > Mike, Mike is the shortest."
   },
   {
-    "question": "Sample Logic Question 3",
+    "question": "What is the square root of 144?",
     "answers": [
-      "Wrong 3A",
-      "Wrong 3C",
-      "Correct 3",
-      "Wrong 3B"
+      "10",
+      "11",
+      "12",
+      "14"
     ],
-    "correct_answer": "Correct 3",
+    "correct_answer": "12",
+    "category": "Math",
+    "explanation": "12 x 12 = 144."
+  },
+  {
+    "question": "What is 15% of 200?",
+    "answers": [
+      "25",
+      "30",
+      "35",
+      "40"
+    ],
+    "correct_answer": "30",
+    "category": "Math",
+    "explanation": "0.15 \u00d7 200 = 30."
+  },
+  {
+    "question": "What comes next in the sequence: 3, 6, 12, 24, ?",
+    "answers": [
+      "36",
+      "48",
+      "50",
+      "60"
+    ],
+    "correct_answer": "48",
+    "category": "Patterns",
+    "explanation": "Each number doubles the previous: \u00d72 pattern."
+  },
+  {
+    "question": "Which number is missing? 5, 10, __, 20, 25",
+    "answers": [
+      "12",
+      "15",
+      "13",
+      "18"
+    ],
+    "correct_answer": "15",
+    "category": "Patterns",
+    "explanation": "Increments of 5: 5, 10, 15, 20, 25."
+  },
+  {
+    "question": "Which word is the opposite of 'expand'?",
+    "answers": [
+      "Extend",
+      "Grow",
+      "Contract",
+      "Increase"
+    ],
+    "correct_answer": "Contract",
+    "category": "Verbal",
+    "explanation": "'Contract' means to shrink or reduce."
+  },
+  {
+    "question": "Choose the analogy: Book is to Reading as Fork is to?",
+    "answers": [
+      "Drawing",
+      "Writing",
+      "Stirring",
+      "Eating"
+    ],
+    "correct_answer": "Eating",
+    "category": "Verbal",
+    "explanation": "You read with a book and eat with a fork."
+  },
+  {
+    "question": "Find the odd one out: \u25b2, \u25a0, \u25cf, \u2605",
+    "answers": [
+      "\u25cf",
+      "\u25b2",
+      "\u25a0",
+      "\u2605"
+    ],
+    "correct_answer": "\u2605",
+    "category": "Abstract",
+    "explanation": "\u2605 is a complex shape; the others are basic geometric figures."
+  },
+  {
+    "question": "Which image would logically follow this pattern? [\u25b2\u25b6\u25b2\u25b6__]",
+    "answers": [
+      "\u25b2",
+      "\u25b6",
+      "\u25a0",
+      "\u25cf"
+    ],
+    "correct_answer": "\u25b2",
+    "category": "Abstract",
+    "explanation": "The pattern alternates: \u25b2, \u25b6, \u25b2, \u25b6, ..."
+  },
+  {
+    "question": "If all cats are mammals, and some mammals are dogs, which of the following is true?",
+    "answers": [
+      "All cats are dogs",
+      "Some dogs are cats",
+      "All mammals are cats",
+      "Some mammals could be dogs"
+    ],
+    "correct_answer": "Some mammals could be dogs",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 3' is correct in a Logic question."
+    "explanation": "Only the last statement is logically valid based on the premises."
   },
   {
-    "question": "Sample Logic Question 4",
+    "question": "Tom is taller than Jerry. Jerry is taller than Mike. Who is the shortest?",
     "answers": [
-      "Correct 4",
-      "Wrong 4A",
-      "Wrong 4C",
-      "Wrong 4B"
+      "Tom",
+      "Jerry",
+      "Mike",
+      "Can't determine"
     ],
-    "correct_answer": "Correct 4",
+    "correct_answer": "Mike",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 4' is correct in a Logic question."
+    "explanation": "If Tom > Jerry > Mike, Mike is the shortest."
   },
   {
-    "question": "Sample Logic Question 5",
+    "question": "What is the square root of 144?",
     "answers": [
-      "Wrong 5A",
-      "Wrong 5B",
-      "Wrong 5C",
-      "Correct 5"
+      "10",
+      "11",
+      "12",
+      "14"
     ],
-    "correct_answer": "Correct 5",
+    "correct_answer": "12",
+    "category": "Math",
+    "explanation": "12 x 12 = 144."
+  },
+  {
+    "question": "What is 15% of 200?",
+    "answers": [
+      "25",
+      "30",
+      "35",
+      "40"
+    ],
+    "correct_answer": "30",
+    "category": "Math",
+    "explanation": "0.15 \u00d7 200 = 30."
+  },
+  {
+    "question": "What comes next in the sequence: 3, 6, 12, 24, ?",
+    "answers": [
+      "36",
+      "48",
+      "50",
+      "60"
+    ],
+    "correct_answer": "48",
+    "category": "Patterns",
+    "explanation": "Each number doubles the previous: \u00d72 pattern."
+  },
+  {
+    "question": "Which number is missing? 5, 10, __, 20, 25",
+    "answers": [
+      "12",
+      "15",
+      "13",
+      "18"
+    ],
+    "correct_answer": "15",
+    "category": "Patterns",
+    "explanation": "Increments of 5: 5, 10, 15, 20, 25."
+  },
+  {
+    "question": "Which word is the opposite of 'expand'?",
+    "answers": [
+      "Extend",
+      "Grow",
+      "Contract",
+      "Increase"
+    ],
+    "correct_answer": "Contract",
+    "category": "Verbal",
+    "explanation": "'Contract' means to shrink or reduce."
+  },
+  {
+    "question": "Choose the analogy: Book is to Reading as Fork is to?",
+    "answers": [
+      "Drawing",
+      "Writing",
+      "Stirring",
+      "Eating"
+    ],
+    "correct_answer": "Eating",
+    "category": "Verbal",
+    "explanation": "You read with a book and eat with a fork."
+  },
+  {
+    "question": "Find the odd one out: \u25b2, \u25a0, \u25cf, \u2605",
+    "answers": [
+      "\u25cf",
+      "\u25b2",
+      "\u25a0",
+      "\u2605"
+    ],
+    "correct_answer": "\u2605",
+    "category": "Abstract",
+    "explanation": "\u2605 is a complex shape; the others are basic geometric figures."
+  },
+  {
+    "question": "Which image would logically follow this pattern? [\u25b2\u25b6\u25b2\u25b6__]",
+    "answers": [
+      "\u25b2",
+      "\u25b6",
+      "\u25a0",
+      "\u25cf"
+    ],
+    "correct_answer": "\u25b2",
+    "category": "Abstract",
+    "explanation": "The pattern alternates: \u25b2, \u25b6, \u25b2, \u25b6, ..."
+  },
+  {
+    "question": "If all cats are mammals, and some mammals are dogs, which of the following is true?",
+    "answers": [
+      "All cats are dogs",
+      "Some dogs are cats",
+      "All mammals are cats",
+      "Some mammals could be dogs"
+    ],
+    "correct_answer": "Some mammals could be dogs",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 5' is correct in a Logic question."
+    "explanation": "Only the last statement is logically valid based on the premises."
   },
   {
-    "question": "Sample Logic Question 6",
+    "question": "Tom is taller than Jerry. Jerry is taller than Mike. Who is the shortest?",
     "answers": [
-      "Wrong 6B",
-      "Wrong 6A",
-      "Correct 6",
-      "Wrong 6C"
+      "Tom",
+      "Jerry",
+      "Mike",
+      "Can't determine"
     ],
-    "correct_answer": "Correct 6",
+    "correct_answer": "Mike",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 6' is correct in a Logic question."
+    "explanation": "If Tom > Jerry > Mike, Mike is the shortest."
   },
   {
-    "question": "Sample Logic Question 7",
+    "question": "What is the square root of 144?",
     "answers": [
-      "Correct 7",
-      "Wrong 7A",
-      "Wrong 7C",
-      "Wrong 7B"
+      "10",
+      "11",
+      "12",
+      "14"
     ],
-    "correct_answer": "Correct 7",
+    "correct_answer": "12",
+    "category": "Math",
+    "explanation": "12 x 12 = 144."
+  },
+  {
+    "question": "What is 15% of 200?",
+    "answers": [
+      "25",
+      "30",
+      "35",
+      "40"
+    ],
+    "correct_answer": "30",
+    "category": "Math",
+    "explanation": "0.15 \u00d7 200 = 30."
+  },
+  {
+    "question": "What comes next in the sequence: 3, 6, 12, 24, ?",
+    "answers": [
+      "36",
+      "48",
+      "50",
+      "60"
+    ],
+    "correct_answer": "48",
+    "category": "Patterns",
+    "explanation": "Each number doubles the previous: \u00d72 pattern."
+  },
+  {
+    "question": "Which number is missing? 5, 10, __, 20, 25",
+    "answers": [
+      "12",
+      "15",
+      "13",
+      "18"
+    ],
+    "correct_answer": "15",
+    "category": "Patterns",
+    "explanation": "Increments of 5: 5, 10, 15, 20, 25."
+  },
+  {
+    "question": "Which word is the opposite of 'expand'?",
+    "answers": [
+      "Extend",
+      "Grow",
+      "Contract",
+      "Increase"
+    ],
+    "correct_answer": "Contract",
+    "category": "Verbal",
+    "explanation": "'Contract' means to shrink or reduce."
+  },
+  {
+    "question": "Choose the analogy: Book is to Reading as Fork is to?",
+    "answers": [
+      "Drawing",
+      "Writing",
+      "Stirring",
+      "Eating"
+    ],
+    "correct_answer": "Eating",
+    "category": "Verbal",
+    "explanation": "You read with a book and eat with a fork."
+  },
+  {
+    "question": "Find the odd one out: \u25b2, \u25a0, \u25cf, \u2605",
+    "answers": [
+      "\u25cf",
+      "\u25b2",
+      "\u25a0",
+      "\u2605"
+    ],
+    "correct_answer": "\u2605",
+    "category": "Abstract",
+    "explanation": "\u2605 is a complex shape; the others are basic geometric figures."
+  },
+  {
+    "question": "Which image would logically follow this pattern? [\u25b2\u25b6\u25b2\u25b6__]",
+    "answers": [
+      "\u25b2",
+      "\u25b6",
+      "\u25a0",
+      "\u25cf"
+    ],
+    "correct_answer": "\u25b2",
+    "category": "Abstract",
+    "explanation": "The pattern alternates: \u25b2, \u25b6, \u25b2, \u25b6, ..."
+  },
+  {
+    "question": "If all cats are mammals, and some mammals are dogs, which of the following is true?",
+    "answers": [
+      "All cats are dogs",
+      "Some dogs are cats",
+      "All mammals are cats",
+      "Some mammals could be dogs"
+    ],
+    "correct_answer": "Some mammals could be dogs",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 7' is correct in a Logic question."
+    "explanation": "Only the last statement is logically valid based on the premises."
   },
   {
-    "question": "Sample Logic Question 8",
+    "question": "Tom is taller than Jerry. Jerry is taller than Mike. Who is the shortest?",
     "answers": [
-      "Wrong 8B",
-      "Wrong 8A",
-      "Wrong 8C",
-      "Correct 8"
+      "Tom",
+      "Jerry",
+      "Mike",
+      "Can't determine"
     ],
-    "correct_answer": "Correct 8",
+    "correct_answer": "Mike",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 8' is correct in a Logic question."
+    "explanation": "If Tom > Jerry > Mike, Mike is the shortest."
   },
   {
-    "question": "Sample Logic Question 9",
+    "question": "What is the square root of 144?",
     "answers": [
-      "Wrong 9C",
-      "Wrong 9B",
-      "Wrong 9A",
-      "Correct 9"
+      "10",
+      "11",
+      "12",
+      "14"
     ],
-    "correct_answer": "Correct 9",
+    "correct_answer": "12",
+    "category": "Math",
+    "explanation": "12 x 12 = 144."
+  },
+  {
+    "question": "What is 15% of 200?",
+    "answers": [
+      "25",
+      "30",
+      "35",
+      "40"
+    ],
+    "correct_answer": "30",
+    "category": "Math",
+    "explanation": "0.15 \u00d7 200 = 30."
+  },
+  {
+    "question": "What comes next in the sequence: 3, 6, 12, 24, ?",
+    "answers": [
+      "36",
+      "48",
+      "50",
+      "60"
+    ],
+    "correct_answer": "48",
+    "category": "Patterns",
+    "explanation": "Each number doubles the previous: \u00d72 pattern."
+  },
+  {
+    "question": "Which number is missing? 5, 10, __, 20, 25",
+    "answers": [
+      "12",
+      "15",
+      "13",
+      "18"
+    ],
+    "correct_answer": "15",
+    "category": "Patterns",
+    "explanation": "Increments of 5: 5, 10, 15, 20, 25."
+  },
+  {
+    "question": "Which word is the opposite of 'expand'?",
+    "answers": [
+      "Extend",
+      "Grow",
+      "Contract",
+      "Increase"
+    ],
+    "correct_answer": "Contract",
+    "category": "Verbal",
+    "explanation": "'Contract' means to shrink or reduce."
+  },
+  {
+    "question": "Choose the analogy: Book is to Reading as Fork is to?",
+    "answers": [
+      "Drawing",
+      "Writing",
+      "Stirring",
+      "Eating"
+    ],
+    "correct_answer": "Eating",
+    "category": "Verbal",
+    "explanation": "You read with a book and eat with a fork."
+  },
+  {
+    "question": "Find the odd one out: \u25b2, \u25a0, \u25cf, \u2605",
+    "answers": [
+      "\u25cf",
+      "\u25b2",
+      "\u25a0",
+      "\u2605"
+    ],
+    "correct_answer": "\u2605",
+    "category": "Abstract",
+    "explanation": "\u2605 is a complex shape; the others are basic geometric figures."
+  },
+  {
+    "question": "Which image would logically follow this pattern? [\u25b2\u25b6\u25b2\u25b6__]",
+    "answers": [
+      "\u25b2",
+      "\u25b6",
+      "\u25a0",
+      "\u25cf"
+    ],
+    "correct_answer": "\u25b2",
+    "category": "Abstract",
+    "explanation": "The pattern alternates: \u25b2, \u25b6, \u25b2, \u25b6, ..."
+  },
+  {
+    "question": "If all cats are mammals, and some mammals are dogs, which of the following is true?",
+    "answers": [
+      "All cats are dogs",
+      "Some dogs are cats",
+      "All mammals are cats",
+      "Some mammals could be dogs"
+    ],
+    "correct_answer": "Some mammals could be dogs",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 9' is correct in a Logic question."
+    "explanation": "Only the last statement is logically valid based on the premises."
   },
   {
-    "question": "Sample Logic Question 10",
+    "question": "Tom is taller than Jerry. Jerry is taller than Mike. Who is the shortest?",
     "answers": [
-      "Wrong 10B",
-      "Wrong 10A",
-      "Correct 10",
-      "Wrong 10C"
+      "Tom",
+      "Jerry",
+      "Mike",
+      "Can't determine"
     ],
-    "correct_answer": "Correct 10",
+    "correct_answer": "Mike",
     "category": "Logic",
-    "explanation": "This is the explanation for why 'Correct 10' is correct in a Logic question."
+    "explanation": "If Tom > Jerry > Mike, Mike is the shortest."
   },
   {
-    "question": "Sample Math Question 1",
+    "question": "What is the square root of 144?",
     "answers": [
-      "Wrong 1C",
-      "Wrong 1A",
-      "Wrong 1B",
-      "Correct 1"
+      "10",
+      "11",
+      "12",
+      "14"
     ],
-    "correct_answer": "Correct 1",
+    "correct_answer": "12",
     "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 1' is correct in a Math question."
+    "explanation": "12 x 12 = 144."
   },
   {
-    "question": "Sample Math Question 2",
+    "question": "What is 15% of 200?",
     "answers": [
-      "Wrong 2C",
-      "Wrong 2B",
-      "Correct 2",
-      "Wrong 2A"
+      "25",
+      "30",
+      "35",
+      "40"
     ],
-    "correct_answer": "Correct 2",
+    "correct_answer": "30",
     "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 2' is correct in a Math question."
+    "explanation": "0.15 \u00d7 200 = 30."
   },
   {
-    "question": "Sample Math Question 3",
+    "question": "What comes next in the sequence: 3, 6, 12, 24, ?",
     "answers": [
-      "Wrong 3B",
-      "Correct 3",
-      "Wrong 3A",
-      "Wrong 3C"
+      "36",
+      "48",
+      "50",
+      "60"
     ],
-    "correct_answer": "Correct 3",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 3' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 4",
-    "answers": [
-      "Wrong 4C",
-      "Correct 4",
-      "Wrong 4B",
-      "Wrong 4A"
-    ],
-    "correct_answer": "Correct 4",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 4' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 5",
-    "answers": [
-      "Wrong 5A",
-      "Wrong 5B",
-      "Correct 5",
-      "Wrong 5C"
-    ],
-    "correct_answer": "Correct 5",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 5' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 6",
-    "answers": [
-      "Wrong 6B",
-      "Correct 6",
-      "Wrong 6A",
-      "Wrong 6C"
-    ],
-    "correct_answer": "Correct 6",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 6' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 7",
-    "answers": [
-      "Wrong 7B",
-      "Wrong 7C",
-      "Wrong 7A",
-      "Correct 7"
-    ],
-    "correct_answer": "Correct 7",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 7' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 8",
-    "answers": [
-      "Correct 8",
-      "Wrong 8B",
-      "Wrong 8C",
-      "Wrong 8A"
-    ],
-    "correct_answer": "Correct 8",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 8' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 9",
-    "answers": [
-      "Correct 9",
-      "Wrong 9B",
-      "Wrong 9A",
-      "Wrong 9C"
-    ],
-    "correct_answer": "Correct 9",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 9' is correct in a Math question."
-  },
-  {
-    "question": "Sample Math Question 10",
-    "answers": [
-      "Correct 10",
-      "Wrong 10C",
-      "Wrong 10B",
-      "Wrong 10A"
-    ],
-    "correct_answer": "Correct 10",
-    "category": "Math",
-    "explanation": "This is the explanation for why 'Correct 10' is correct in a Math question."
-  },
-  {
-    "question": "Sample Patterns Question 1",
-    "answers": [
-      "Wrong 1B",
-      "Wrong 1A",
-      "Correct 1",
-      "Wrong 1C"
-    ],
-    "correct_answer": "Correct 1",
+    "correct_answer": "48",
     "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 1' is correct in a Patterns question."
+    "explanation": "Each number doubles the previous: \u00d72 pattern."
   },
   {
-    "question": "Sample Patterns Question 2",
+    "question": "Which number is missing? 5, 10, __, 20, 25",
     "answers": [
-      "Wrong 2C",
-      "Wrong 2B",
-      "Correct 2",
-      "Wrong 2A"
+      "12",
+      "15",
+      "13",
+      "18"
     ],
-    "correct_answer": "Correct 2",
+    "correct_answer": "15",
     "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 2' is correct in a Patterns question."
+    "explanation": "Increments of 5: 5, 10, 15, 20, 25."
   },
   {
-    "question": "Sample Patterns Question 3",
+    "question": "Which word is the opposite of 'expand'?",
     "answers": [
-      "Wrong 3A",
-      "Wrong 3B",
-      "Correct 3",
-      "Wrong 3C"
+      "Extend",
+      "Grow",
+      "Contract",
+      "Increase"
     ],
-    "correct_answer": "Correct 3",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 3' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 4",
-    "answers": [
-      "Wrong 4A",
-      "Wrong 4B",
-      "Correct 4",
-      "Wrong 4C"
-    ],
-    "correct_answer": "Correct 4",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 4' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 5",
-    "answers": [
-      "Wrong 5C",
-      "Wrong 5B",
-      "Wrong 5A",
-      "Correct 5"
-    ],
-    "correct_answer": "Correct 5",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 5' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 6",
-    "answers": [
-      "Wrong 6C",
-      "Wrong 6B",
-      "Wrong 6A",
-      "Correct 6"
-    ],
-    "correct_answer": "Correct 6",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 6' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 7",
-    "answers": [
-      "Correct 7",
-      "Wrong 7A",
-      "Wrong 7B",
-      "Wrong 7C"
-    ],
-    "correct_answer": "Correct 7",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 7' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 8",
-    "answers": [
-      "Wrong 8B",
-      "Wrong 8A",
-      "Wrong 8C",
-      "Correct 8"
-    ],
-    "correct_answer": "Correct 8",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 8' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 9",
-    "answers": [
-      "Correct 9",
-      "Wrong 9B",
-      "Wrong 9C",
-      "Wrong 9A"
-    ],
-    "correct_answer": "Correct 9",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 9' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Patterns Question 10",
-    "answers": [
-      "Wrong 10C",
-      "Wrong 10A",
-      "Correct 10",
-      "Wrong 10B"
-    ],
-    "correct_answer": "Correct 10",
-    "category": "Patterns",
-    "explanation": "This is the explanation for why 'Correct 10' is correct in a Patterns question."
-  },
-  {
-    "question": "Sample Verbal Question 1",
-    "answers": [
-      "Wrong 1C",
-      "Wrong 1A",
-      "Wrong 1B",
-      "Correct 1"
-    ],
-    "correct_answer": "Correct 1",
+    "correct_answer": "Contract",
     "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 1' is correct in a Verbal question."
+    "explanation": "'Contract' means to shrink or reduce."
   },
   {
-    "question": "Sample Verbal Question 2",
+    "question": "Choose the analogy: Book is to Reading as Fork is to?",
     "answers": [
-      "Wrong 2B",
-      "Correct 2",
-      "Wrong 2A",
-      "Wrong 2C"
+      "Drawing",
+      "Writing",
+      "Stirring",
+      "Eating"
     ],
-    "correct_answer": "Correct 2",
+    "correct_answer": "Eating",
     "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 2' is correct in a Verbal question."
+    "explanation": "You read with a book and eat with a fork."
   },
   {
-    "question": "Sample Verbal Question 3",
+    "question": "Find the odd one out: \u25b2, \u25a0, \u25cf, \u2605",
     "answers": [
-      "Correct 3",
-      "Wrong 3A",
-      "Wrong 3B",
-      "Wrong 3C"
+      "\u25cf",
+      "\u25b2",
+      "\u25a0",
+      "\u2605"
     ],
-    "correct_answer": "Correct 3",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 3' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 4",
-    "answers": [
-      "Wrong 4B",
-      "Wrong 4C",
-      "Wrong 4A",
-      "Correct 4"
-    ],
-    "correct_answer": "Correct 4",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 4' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 5",
-    "answers": [
-      "Correct 5",
-      "Wrong 5B",
-      "Wrong 5C",
-      "Wrong 5A"
-    ],
-    "correct_answer": "Correct 5",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 5' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 6",
-    "answers": [
-      "Wrong 6B",
-      "Wrong 6A",
-      "Correct 6",
-      "Wrong 6C"
-    ],
-    "correct_answer": "Correct 6",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 6' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 7",
-    "answers": [
-      "Wrong 7B",
-      "Correct 7",
-      "Wrong 7C",
-      "Wrong 7A"
-    ],
-    "correct_answer": "Correct 7",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 7' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 8",
-    "answers": [
-      "Wrong 8C",
-      "Correct 8",
-      "Wrong 8A",
-      "Wrong 8B"
-    ],
-    "correct_answer": "Correct 8",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 8' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 9",
-    "answers": [
-      "Wrong 9B",
-      "Wrong 9C",
-      "Correct 9",
-      "Wrong 9A"
-    ],
-    "correct_answer": "Correct 9",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 9' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Verbal Question 10",
-    "answers": [
-      "Wrong 10B",
-      "Wrong 10A",
-      "Correct 10",
-      "Wrong 10C"
-    ],
-    "correct_answer": "Correct 10",
-    "category": "Verbal",
-    "explanation": "This is the explanation for why 'Correct 10' is correct in a Verbal question."
-  },
-  {
-    "question": "Sample Abstract Question 1",
-    "answers": [
-      "Wrong 1B",
-      "Wrong 1C",
-      "Wrong 1A",
-      "Correct 1"
-    ],
-    "correct_answer": "Correct 1",
+    "correct_answer": "\u2605",
     "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 1' is correct in a Abstract question."
+    "explanation": "\u2605 is a complex shape; the others are basic geometric figures."
   },
   {
-    "question": "Sample Abstract Question 2",
+    "question": "Which image would logically follow this pattern? [\u25b2\u25b6\u25b2\u25b6__]",
     "answers": [
-      "Wrong 2B",
-      "Correct 2",
-      "Wrong 2A",
-      "Wrong 2C"
+      "\u25b2",
+      "\u25b6",
+      "\u25a0",
+      "\u25cf"
     ],
-    "correct_answer": "Correct 2",
+    "correct_answer": "\u25b2",
     "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 2' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 3",
-    "answers": [
-      "Wrong 3A",
-      "Wrong 3B",
-      "Wrong 3C",
-      "Correct 3"
-    ],
-    "correct_answer": "Correct 3",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 3' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 4",
-    "answers": [
-      "Wrong 4B",
-      "Wrong 4A",
-      "Wrong 4C",
-      "Correct 4"
-    ],
-    "correct_answer": "Correct 4",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 4' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 5",
-    "answers": [
-      "Correct 5",
-      "Wrong 5B",
-      "Wrong 5A",
-      "Wrong 5C"
-    ],
-    "correct_answer": "Correct 5",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 5' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 6",
-    "answers": [
-      "Correct 6",
-      "Wrong 6A",
-      "Wrong 6C",
-      "Wrong 6B"
-    ],
-    "correct_answer": "Correct 6",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 6' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 7",
-    "answers": [
-      "Wrong 7C",
-      "Wrong 7B",
-      "Wrong 7A",
-      "Correct 7"
-    ],
-    "correct_answer": "Correct 7",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 7' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 8",
-    "answers": [
-      "Wrong 8B",
-      "Correct 8",
-      "Wrong 8A",
-      "Wrong 8C"
-    ],
-    "correct_answer": "Correct 8",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 8' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 9",
-    "answers": [
-      "Wrong 9C",
-      "Wrong 9A",
-      "Wrong 9B",
-      "Correct 9"
-    ],
-    "correct_answer": "Correct 9",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 9' is correct in a Abstract question."
-  },
-  {
-    "question": "Sample Abstract Question 10",
-    "answers": [
-      "Correct 10",
-      "Wrong 10B",
-      "Wrong 10A",
-      "Wrong 10C"
-    ],
-    "correct_answer": "Correct 10",
-    "category": "Abstract",
-    "explanation": "This is the explanation for why 'Correct 10' is correct in a Abstract question."
+    "explanation": "The pattern alternates: \u25b2, \u25b6, \u25b2, \u25b6, ..."
   }
 ]
