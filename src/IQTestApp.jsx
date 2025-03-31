@@ -114,7 +114,7 @@ const handleAnswer = (selected) => {
       <div className="max-w-3xl mx-auto p-6 text-center">
         <h1 className="text-3xl font-bold mb-4">Your Real IQ Score</h1>
         <p className="text-xl mb-4">🧠 Estimated IQ: <strong>{iqEstimate}</strong> {iqEstimate} <strong>{result?.estimated_iq}</strong></p>
-        <p className="mb-6">Score: {result?.score} / {result?.max_score}</p>
+        <p className="mb-6">Score: <strong>{totalCorrect} / {totalQuestions}</strong> {result?.score} / {result?.max_score}</p>
         
         <h2 className="text-xl font-semibold mb-2">🧩 Category Performance:</h2>
         <ul className="mb-6 text-left list-disc list-inside">
