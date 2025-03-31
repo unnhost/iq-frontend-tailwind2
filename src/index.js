@@ -1,12 +1,8 @@
-
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import IQTestApp from "./IQTestApp";
+import AppWrapper from "./AppWrapper";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <IQTestApp />
-  </React.StrictMode>
-);
+function App() {
+  return <AppWrapper />;
+}
+
+export default App;
