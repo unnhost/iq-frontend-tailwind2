@@ -1,141 +1,164 @@
+import React, { useState } from "react";
+import questionsData from "./questions.json";
+import Leaderboard from "./Leaderboard";
 
-import { useState, useEffect } from "react";
+const IQTestApp = () => {
+  const [step, setStep] = useState("intro");
+  const [name, setName] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [categoryScores, setCategoryScores] = useState({});
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
-const API_URL = "https://iq-backend-bc3f.onrender.com";
+  const question = questionsData[currentIndex];
 
-export default function IQTestApp({ userName }) {
-  const [questions, setQuestions] = useState([]);
-  const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(30);
+  const handleStart = () => {
+    if (!name.trim()) return;
+    setStep("quiz");
+  };
 
-  useEffect(() => {
-    fetch(`${API_URL}/questions`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load questions");
-        return res.json();
-      })
-      .then(setQuestions)
-      .catch((err) => {
-        console.error("Error loading questions:", err);
-      });
-  }, []);
+  const handleAnswer = (answer) => {
+    const isCorrect = answer === question.correct_answer;
 
-  useEffect(() => {
-    if (submitted || current >= questions.length || questions.length === 0) return;
-    if (timeLeft <= 0) {
-      handleAnswer(null);
-      return;
+    if (isCorrect) {
+      setScore(prev => prev + 1);
+      setCategoryScores(prev => ({
+        ...prev,
+        [question.category]: (prev[question.category] || 0) + 1
+      }));
     }
-    const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [timeLeft, current, submitted, questions]);
 
-  const handleAnswer = (selected) => {
-    const q = questions[current];
-    const correctAnswer = String(q.answer).trim().toLowerCase();
-    const userAnswer = String(selected).trim().toLowerCase();
-    const isCorrect = userAnswer === correctAnswer;
+    setSelectedAnswers(prev => [
+      ...prev,
+      {
+        question: question.question,
+        selected: answer,
+        correct: question.correct_answer,
+        category: question.category,
+        explanation: question.explanation
+      }
+    ]);
 
-    const newAnswer = {
-      question: q.question,
-      correctAnswer: q.answer,
-      selected: selected,
-      isCorrect,
-      time: 30 - timeLeft,
-      category: q.category,
-    };
-
-    setAnswers((prev) => [...prev, newAnswer]);
-
-    const next = current + 1;
-    if (next < questions.length) {
-      setCurrent(next);
-      setTimeLeft(30);
+    if (currentIndex + 1 < questionsData.length) {
+      setCurrentIndex(prev => prev + 1);
     } else {
-      setSubmitted(true);
+      setStep("result");
     }
   };
 
-  const totalCorrect = answers.filter((a) => a.isCorrect).length;
-  const totalQuestions = questions.length;
-  const iqEstimate = 80 + Math.round((totalCorrect / totalQuestions) * 40);
-
-  const summaryByCategory = () => {
-    const stats = {};
-    for (const ans of answers) {
-      if (!stats[ans.category]) stats[ans.category] = { correct: 0, total: 0 };
-      stats[ans.category].total += 1;
-      if (ans.isCorrect) stats[ans.category].correct += 1;
-    }
-
-    return Object.entries(stats).map(([cat, stat]) => (
-      <li key={cat}>
-        <strong>{cat}</strong>: {stat.correct} / {stat.total}{" "}
-        {stat.correct / stat.total < 0.5 ? "❌ Needs improvement" : "✅"}
-      </li>
-    ));
+  const handleRetake = () => {
+    setStep("intro");
+    setName("");
+    setCurrentIndex(0);
+    setScore(0);
+    setSelectedAnswers([]);
+    setCategoryScores({});
+    setShowLeaderboard(false);
   };
-
-  const renderSummary = () =>
-    answers.map((a, i) => (
-      <li key={i}>
-        Q{i + 1}: {a.question} | Your Answer: <strong>{a.selected}</strong> | Correct Answer: <strong>{a.correctAnswer}</strong> |{" "}
-        {a.isCorrect ? "✅ Correct" : "❌ Incorrect"} | Time: <strong>{a.time}s</strong>
-      </li>
-    ));
-
-  if (questions.length === 0) {
-    return <p className="p-6 text-center text-lg">Loading questions...</p>;
-  }
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
-        <h2 className="text-2xl font-bold mb-4">Results</h2>
-        <p className="text-xl mb-4">🧠 <strong>Estimated IQ: {iqEstimate}</strong></p>
-        <p className="mb-6"><strong>Score: {totalCorrect} / {totalQuestions}</strong></p>
-        <h3 className="text-lg font-semibold mb-2">Answer Summary:</h3>
-        <ul className="mb-4">{renderSummary()}</ul>
-        <h3 className="text-lg font-semibold mt-4 mb-2">Category Breakdown:</h3>
-        <ul className="mb-6">{summaryByCategory()}</ul>
-        <div className="flex gap-4">
-          <button
-            onClick={() => window.location.reload()}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Retake Test
-          </button>
-          <button
-            onClick={() => (window.location.href = "/")}
-            className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-          >
-            🏠 Home
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const q = questions[current];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
-      <h2 className="text-2xl font-bold mb-4">Question {current + 1}</h2>
-      <p className="mb-4 text-lg">{q.question}</p>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        {q.options.map((opt, i) => (
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10 text-center">
+      {step === "intro" && (
+        <>
+          <h1 className="text-2xl font-bold mb-4">Welcome to the IQ Test</h1>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border p-2 rounded w-full mb-4"
+          />
           <button
-            key={i}
-            onClick={() => handleAnswer(opt)}
-            className="bg-blue-100 hover:bg-blue-300 text-black font-medium px-4 py-2 rounded-lg transition duration-150"
+            onClick={handleStart}
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
           >
-            {opt}
+            Start Test
           </button>
-        ))}
-      </div>
-      <p className="text-sm text-gray-500">Time left: {timeLeft}s</p>
+          <div className="mt-4">
+            <button
+              onClick={() => setShowLeaderboard(true)}
+              className="text-blue-500 underline"
+            >
+              View Leaderboard
+            </button>
+          </div>
+          {showLeaderboard && (
+            <div className="mt-6">
+              <Leaderboard />
+            </div>
+          )}
+        </>
+      )}
+
+      {step === "quiz" && (
+        <>
+          <h2 className="text-xl font-semibold mb-4">Question {currentIndex + 1}</h2>
+          <p className="mb-6">{question.question}</p>
+          <div className="grid grid-cols-2 gap-4">
+            {question.answers.map((ans, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleAnswer(ans)}
+                className="bg-gray-200 hover:bg-gray-300 p-4 rounded"
+              >
+                {ans}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      {step === "result" && (
+        <>
+          <h2 className="text-2xl font-bold mb-4">Your Score: {score}/{questionsData.length}</h2>
+          <p className="mb-2">Thank you, {name}!</p>
+
+          <div className="text-left mt-6">
+            <h3 className="text-xl font-semibold mb-2">Breakdown by Category:</h3>
+            <ul className="mb-6">
+              {Object.entries(categoryScores).map(([cat, val]) => (
+                <li key={cat}>{cat}: {val}</li>
+              ))}
+            </ul>
+
+            <h3 className="text-xl font-semibold mb-2">Review Answers:</h3>
+            <ul className="space-y-4">
+              {selectedAnswers.map((item, idx) => (
+                <li key={idx} className="p-4 bg-gray-100 rounded">
+                  <strong>Q{idx + 1}:</strong> {item.question}<br/>
+                  <span className="text-green-700">Correct Answer:</span> {item.correct}<br/>
+                  <span className="text-blue-700">Your Answer:</span> {item.selected}<br/>
+                  <span className="text-gray-700 italic">Explanation:</span> {item.explanation}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-6">
+            <button
+              onClick={handleRetake}
+              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+            >
+              Retake Test
+            </button>
+            <button
+              onClick={() => setShowLeaderboard(true)}
+              className="text-blue-500 underline ml-4"
+            >
+              View Leaderboard
+            </button>
+          </div>
+
+          {showLeaderboard && (
+            <div className="mt-6">
+              <Leaderboard />
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
-}
+};
+
+export default IQTestApp;
