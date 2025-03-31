@@ -42,7 +42,6 @@ export default function IQTestApp({ userName }) {
     }
   }, [submitted, sent, answers, questions, userName]);
 
-  const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [submitted, setSubmitted] = useState(false);
