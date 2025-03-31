@@ -1,8 +1,11 @@
 import React from "react";
-import AppWrapper from "./AppWrapper";
+import ReactDOM from "react-dom/client";
+import AppWrapper from "./AppWrapper"; // ✅ this shows the name input page
+import "./index.css"; // keep styles if you use Tailwind
 
-function App() {
-  return <AppWrapper />;
-}
-
-export default App;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <AppWrapper />
+  </React.StrictMode>
+);
