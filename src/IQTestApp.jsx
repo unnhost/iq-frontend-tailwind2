@@ -143,7 +143,6 @@ const handleAnswer = (selected) => {
           <button onClick={() => window.location.reload()} className="bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-700">Retake Test</button>
           <button onClick={() => window.location.href = "/"} className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-500">Go to Home</button>
         </div>
-      </div>
     );
   }
 
