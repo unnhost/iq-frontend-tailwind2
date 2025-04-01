@@ -136,6 +136,7 @@ console.log("Fetching questions...");
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+console.log("Current question object:", question);
             <h2 className="text-xl font-semibold mb-2">{question.question}</h2>
             <div className="mb-4">
               {question.options.map((option, idx) => (
