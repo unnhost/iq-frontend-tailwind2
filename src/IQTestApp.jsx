@@ -130,6 +130,7 @@ console.log("Fetching questions...");
         )}
 
         {step === "quiz" && question && (
+{ try {
           <motion.div
             key="quiz"
             initial={{ opacity: 0 }}
