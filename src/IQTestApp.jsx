@@ -21,6 +21,8 @@ const IQTestApp = () => {
     setStep("quiz");
   };
 
+export default IQTestApp;
+
   const handleAnswer = (answer) => {
     const isCorrect = answer === question.correct_answer;
 
