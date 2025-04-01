@@ -29,13 +29,19 @@ const IQTestApp = () => {
   };
 
 
+  
   const handleAnswer = (answer) => {
+    const timeTaken = elapsedTime;
+    setElapsedTime(0);
+    setTimeLog(prev => [...prev, timeTaken]);
+
     const isCorrect = answer === question.correct_answer;
 
     if (isCorrect) {
       const basePoints = 1;
       const speedBonus = parseFloat(calculateSpeedBonus(timeTaken));
       const totalPoints = basePoints + speedBonus;
+
       setScore(prev => prev + totalPoints);
       setCategoryScores(prev => ({
         ...prev,
@@ -50,17 +56,18 @@ const IQTestApp = () => {
         selected: answer,
         correct: question.correct_answer,
         category: question.category,
-        explanation: question.explanation
+        explanation: question.explanation,
+        time: timeTaken
       }
     ]);
 
     if (currentIndex + 1 < questionsData.length) {
       setCurrentIndex(prev => prev + 1);
-      
     } else {
       setStep("result");
     }
   };
+
 
   const handleRetake = () => {
     setStep("intro");
