@@ -147,21 +147,64 @@ const IQTestApp = () => {
         {step === "result" && (
           <motion.div
             key="result"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={fadeVariants}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <h2 className="text-2xl font-bold mb-4">Your Score: {score}/{questionsData.length}</h2>
-            <p className="mb-2">Thank you, {name}!</p>
+            <h2 className="text-3xl font-bold mb-4 text-blue-700">Test Complete!</h2>
+            <div className="bg-white p-6 rounded-lg shadow-md mb-6 text-left">
+              <p className="text-xl mb-2"><strong>Name:</strong> {name}</p>
+              <p className="text-xl mb-2"><strong>Score:</strong> {score.toFixed(2)} / {questionsData.length}</p>
+              <p className="text-xl mb-2"><strong>Estimated IQ:</strong> {Math.round(80 + (score / questionsData.length) * 40)}</p>
+              <p className="text-xl mb-4"><strong>Total Time Spent:</strong> {timeLog.reduce((a,b)=>a+b,0)} seconds</p>
+            </div>
 
-            <div className="text-left mt-6">
-              <h3 className="text-xl font-semibold mb-2">Breakdown by Category:</h3>
-              <ul className="mb-6">
+            <div className="bg-gray-100 p-4 rounded-lg shadow-sm mb-6 text-left">
+              <h3 className="text-2xl font-semibold mb-2">Category Breakdown</h3>
+              <ul className="list-disc pl-6 space-y-1">
                 {Object.entries(categoryScores).map(([cat, val]) => (
-                  <li key={cat}>{cat}: {val}</li>
+                  <li key={cat}>
+                    <strong>{cat}:</strong> {val.toFixed(2)}
+                  </li>
                 ))}
+              </ul>
+            </div>
+
+            <div className="bg-white p-4 rounded-lg shadow-sm text-left">
+              <h3 className="text-2xl font-semibold mb-4">Answer Review</h3>
+              {selectedAnswers.map((ans, index) => (
+                <div key={index} className="mb-4 border-b pb-2">
+                  <p><strong>Q{index + 1}:</strong> {ans.question}</p>
+                  <p><span className="text-green-600">Correct:</span> {ans.correct}</p>
+                  <p><span className="text-red-500">Your Answer:</span> {ans.selected}</p>
+                  <p className="text-gray-700 text-sm italic">{ans.explanation}</p>
+                  <p className="text-sm text-blue-500">Time Spent: {ans.time}s</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded"
+                onClick={handleRetake}
+              >
+                Retake Test
+              </button>
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={() => setShowLeaderboard(true)}
+              >
+                View Leaderboard
+              </button>
+              <button
+                className="bg-gray-400 text-white px-4 py-2 rounded"
+                onClick={() => setStep('intro')}
+              >
+                Home
+              </button>
+            </div>
+          </motion.div>
+        )}
               </ul>
 
               <h3 className="text-xl font-semibold mb-2">Review Answers:</h3>
