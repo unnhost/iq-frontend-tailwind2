@@ -11,8 +11,7 @@ const IQTestApp = () => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [categoryScores, setCategoryScores] = useState({});
   const [showLeaderboard, setShowLeaderboard] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [timeLog, setTimeLog] = useState([]);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   const question = questionsData[currentIndex];
 
@@ -21,31 +20,14 @@ const IQTestApp = () => {
     setStep("quiz");
   };
 
-  
-  const calculateSpeedBonus = (time) => {
-    if (time <= 3) return 1.0;
-    if (time >= 15) return 0.0;
-    return ((15 - time) / 12).toFixed(2);
-  };
-
-
-  
   const handleAnswer = (answer) => {
-    const timeTaken = elapsedTime;
-    setElapsedTime(0);
-    setTimeLog(prev => [...prev, timeTaken]);
-
     const isCorrect = answer === question.correct_answer;
 
     if (isCorrect) {
-      const basePoints = 1;
-      const speedBonus = parseFloat(calculateSpeedBonus(timeTaken));
-      const totalPoints = basePoints + speedBonus;
-
-      setScore(prev => prev + totalPoints);
+      setScore(prev => prev + 1);
       setCategoryScores(prev => ({
         ...prev,
-        [question.category]: (prev[question.category] || 0) + totalPoints
+        [question.category]: (prev[question.category] || 0) + 1
       }));
     }
 
@@ -56,18 +38,17 @@ const IQTestApp = () => {
         selected: answer,
         correct: question.correct_answer,
         category: question.category,
-        explanation: question.explanation,
-        time: timeTaken
+        explanation: question.explanation
       }
     ]);
 
     if (currentIndex + 1 < questionsData.length) {
       setCurrentIndex(prev => prev + 1);
+      setTimeLeft(30);
     } else {
       setStep("result");
     }
   };
-
 
   const handleRetake = () => {
     setStep("intro");
@@ -77,14 +58,23 @@ const IQTestApp = () => {
     setSelectedAnswers([]);
     setCategoryScores({});
     setShowLeaderboard(false);
-    
+    setTimeLeft(30);
   };
 
   useEffect(() => {
     if (step !== "quiz") return;
+
     const timer = setInterval(() => {
-      setElapsedTime(prev => prev + 1);
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleAnswer("No Answer");
+          return 30;
+        }
+        return prev - 1;
+      });
     }, 1000);
+
     return () => clearInterval(timer);
   }, [step, currentIndex]);
 
@@ -147,7 +137,7 @@ const IQTestApp = () => {
           >
             <h2 className="text-xl font-semibold mb-2">Question {currentIndex + 1}</h2>
             <p className="mb-4">{question.question}</p>
-            <p className="text-red-500 mb-6">Time left: {elapsedTime} seconds</p>
+            <p className="text-red-500 mb-6">Time left: {timeLeft} seconds</p>
             <div className="grid grid-cols-2 gap-4">
               {question.answers.map((ans, idx) => (
                 <button
