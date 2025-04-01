@@ -67,15 +67,8 @@ const IQTestApp = () => {
     const timer = setInterval(() => {
       setElapsedTime(prev => prev + 1);
     }, 1000);
-    return () => clearInterval(timer);
-  }, [step, currentIndex]);
-
-  const fadeVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 }
-  };
-
+    
+  
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10 text-center">
       <AnimatePresence mode="wait">
@@ -98,49 +91,33 @@ const IQTestApp = () => {
             />
             <button
               onClick={handleStart}
-              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+              className="bg-blue-600 text-white px-4 py-2 rounded"
             >
               Start Test
             </button>
-            <div className="mt-4">
-              <button
-                onClick={() => setShowLeaderboard(true)}
-                className="text-blue-500 underline"
-              >
-                View Leaderboard
-              </button>
-            </div>
-            {showLeaderboard && (
-              <div className="mt-6">
-                <Leaderboard />
-              </div>
-            )}
           </motion.div>
         )}
 
-        {step === "quiz" && (
+        {step === "quiz" && question && (
           <motion.div
-            key={`question-${currentIndex}`}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={fadeVariants}
-            transition={{ duration: 0.5 }}
+            key="quiz"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <h2 className="text-xl font-semibold mb-2">Question {currentIndex + 1}</h2>
-            <p className="mb-4">{question.question}</p>
-            <p className="text-red-500 mb-6">Time Spent: {elapsedTime} seconds</p>
-            <div className="grid grid-cols-2 gap-4">
-              {question.answers.map((ans, idx) => (
+            <h2 className="text-xl font-semibold mb-2">{question.question}</h2>
+            <div className="mb-4">
+              {question.options.map((option, idx) => (
                 <button
                   key={idx}
-                  onClick={() => handleAnswer(ans)}
-                  className="bg-gray-200 hover:bg-gray-300 p-4 rounded"
+                  onClick={() => handleAnswer(option)}
+                  className="block w-full bg-gray-200 hover:bg-gray-300 rounded p-2 my-2"
                 >
-                  {ans}
+                  {option}
                 </button>
               ))}
             </div>
+            <p className="text-blue-500 mb-6">Time Spent: {elapsedTime} seconds</p>
           </motion.div>
         )}
 
@@ -184,67 +161,32 @@ const IQTestApp = () => {
             </div>
 
             <div className="mt-6 flex flex-wrap justify-center gap-4">
-              <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
-                onClick={handleRetake}
-              >
+              <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleRetake}>
                 Retake Test
               </button>
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-                onClick={() => setShowLeaderboard(true)}
-              >
+              <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => setShowLeaderboard(true)}>
                 View Leaderboard
               </button>
-              <button
-                className="bg-gray-400 text-white px-4 py-2 rounded"
-                onClick={() => setStep('intro')}
-              >
+              <button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={() => setStep('intro')}>
                 Home
               </button>
             </div>
           </motion.div>
         )}
-              </ul>
 
-              <h3 className="text-xl font-semibold mb-2">Review Answers:</h3>
-              <ul className="space-y-4">
-                {selectedAnswers.map((item, idx) => (
-                  <li key={idx} className="p-4 bg-gray-100 rounded">
-                    <strong>Q{idx + 1}:</strong> {item.question}<br/>
-                    <span className="text-green-700">Correct Answer:</span> {item.correct}<br/>
-                    <span className="text-blue-700">Your Answer:</span> {item.selected}<br/>
-                    <span className="text-gray-700 italic">Explanation:</span> {item.explanation}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-6">
-              <button
-                onClick={handleRetake}
-                className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
-              >
-                Retake Test
-              </button>
-              <button
-                onClick={() => setShowLeaderboard(true)}
-                className="text-blue-500 underline ml-4"
-              >
-                View Leaderboard
-              </button>
-            </div>
-
-            {showLeaderboard && (
-              <div className="mt-6">
-                <Leaderboard />
-              </div>
-            )}
+        {showLeaderboard && (
+          <motion.div
+            key="leaderboard"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <Leaderboard />
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-};
+
 
 export default IQTestApp;
