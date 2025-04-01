@@ -37,6 +37,37 @@ console.log("Fetching questions...");
     const timer = setInterval(() => {
       setElapsedTime((prev) => prev + 1);
     }, 1000);
+
+const renderQuestionBlock = () => {
+  try {
+    return (
+      <motion.div
+        key="quiz"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <h2 className="text-xl font-semibold mb-2">{question.question}</h2>
+        <div className="mb-4">
+          {question.options && question.options.map((option, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleAnswer(option)}
+              className="block w-full bg-gray-200 hover:bg-gray-300 rounded p-2 my-2"
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <p className="text-blue-500 mb-6">Time Spent: {elapsedTime} seconds</p>
+      </motion.div>
+    );
+  } catch (e) {
+    console.error("Render error:", e);
+    return <p className="text-red-500">Error rendering question.</p>;
+  }
+};
+
     return () => clearInterval(timer);
   }, [step, currentIndex]);
 
@@ -129,7 +160,7 @@ console.log("Fetching questions...");
           </motion.div>
         )}
 
-        {step === "quiz" && question && (
+{step === "quiz" && question && renderQuestionBlock()}
 { try {
           <motion.div
             key="quiz"
