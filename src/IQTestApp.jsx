@@ -11,7 +11,8 @@ const IQTestApp = () => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [categoryScores, setCategoryScores] = useState({});
   const [showLeaderboard, setShowLeaderboard] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [timeLog, setTimeLog] = useState([]);
 
   const question = questionsData[currentIndex];
 
@@ -63,18 +64,9 @@ const IQTestApp = () => {
 
   useEffect(() => {
     if (step !== "quiz") return;
-
     const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          handleAnswer("No Answer");
-          return 30;
-        }
-        return prev - 1;
-      });
+      setElapsedTime(prev => prev + 1);
     }, 1000);
-
     return () => clearInterval(timer);
   }, [step, currentIndex]);
 
