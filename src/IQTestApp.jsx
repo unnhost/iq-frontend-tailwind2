@@ -139,7 +139,8 @@ console.log("Fetching questions...");
 console.log("Current question object:", question);
             <h2 className="text-xl font-semibold mb-2">{question.question}</h2>
             <div className="mb-4">
-              {question.options.map((option, idx) => (
+console.log("Rendering options for:", question.question);
+{question.options && question.options.map((option, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleAnswer(option)}
