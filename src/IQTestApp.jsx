@@ -45,7 +45,7 @@ const IQTestApp = () => {
 
     if (currentIndex + 1 < questionsData.length) {
       setCurrentIndex(prev => prev + 1);
-      setTimeLeft(30);
+      
     } else {
       setStep("result");
     }
@@ -59,7 +59,7 @@ const IQTestApp = () => {
     setSelectedAnswers([]);
     setCategoryScores({});
     setShowLeaderboard(false);
-    setTimeLeft(30);
+    
   };
 
   useEffect(() => {
@@ -129,7 +129,7 @@ const IQTestApp = () => {
           >
             <h2 className="text-xl font-semibold mb-2">Question {currentIndex + 1}</h2>
             <p className="mb-4">{question.question}</p>
-            <p className="text-red-500 mb-6">Time left: {timeLeft} seconds</p>
+            <p className="text-red-500 mb-6">Time left: {elapsedTime} seconds</p>
             <div className="grid grid-cols-2 gap-4">
               {question.answers.map((ans, idx) => (
                 <button
