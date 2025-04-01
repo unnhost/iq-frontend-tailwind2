@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Leaderboard from "./Leaderboard";
@@ -23,10 +24,11 @@ const IQTestApp = () => {
 
   useEffect(() => {
     fetch("https://iq-backend-bc3f.onrender.com/questions")
+        console.log("Fetching questions...");
       .then((res) => res.json())
       .then((data) => {
-        setQuestionsData(data);
-        setQuestion(data[0]);
+        console.log("Received data:", data);
+        console.log("Setting first question:", data[0]);
       });
   }, []);
 
@@ -39,6 +41,7 @@ const IQTestApp = () => {
   }, [step, currentIndex]);
 
   const handleStart = () => {
+    console.log("Test started");
     setStep("quiz");
     setCurrentIndex(0);
     setQuestion(questionsData[0]);
@@ -79,6 +82,7 @@ const IQTestApp = () => {
 
     if (currentIndex + 1 < questionsData.length) {
       setCurrentIndex((prev) => prev + 1);
+    console.log("Next question:", questionsData[currentIndex + 1]);
       setQuestion(questionsData[currentIndex + 1]);
     } else {
       setStep("result");
