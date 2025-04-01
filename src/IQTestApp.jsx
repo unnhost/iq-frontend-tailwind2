@@ -23,8 +23,8 @@ const IQTestApp = () => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   useEffect(() => {
+console.log("Fetching questions...");
     fetch("https://iq-backend-bc3f.onrender.com/questions")
-        console.log("Fetching questions...");
       .then((res) => res.json())
       .then((data) => {
         console.log("Received data:", data);
